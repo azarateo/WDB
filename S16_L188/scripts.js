@@ -48,7 +48,7 @@ function reset() {
 }
 
 upto.addEventListener('change',function(){
-    winningScore = Number(upto.value); 
+    winningScore = Number(this.value); 
     topscore.textContent = winningScore;
     reset();
 });
