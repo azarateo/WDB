@@ -1,8 +1,7 @@
-.green {
-    color:greenyellow
+.selected {
+    color:green;
 }
 .done{
-    color:red;
     text-decoration: line-through;
     opacity: 0.5;
 }
