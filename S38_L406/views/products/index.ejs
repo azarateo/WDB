@@ -10,6 +10,7 @@
     <h1>Products</h1>
     <% for(let p of products) { %>
         <p><b><%= p.name %></b> <%= p.price %> <%= p.description %><p>
+            <em><a href="/products/<%= p.id %>">View product <%= p.id %></a></em>
     <% } %>
 </body>
 </html>
