@@ -16,7 +16,6 @@ app.get('/',(req, res) => {
 
 app.get('/products', async (req, res) => {
     const products = await Product.find({})
-    console.log(products)
     res.render('products/index', {products})
 })
 //Listening on port 3000
