@@ -1,6 +1,9 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const path = require('path')
+
+const Product = require('./models/product')
+
 const app = express()
 const port = 3000
 app.set('view engine', 'ejs')
@@ -11,6 +14,11 @@ app.get('/',(req, res) => {
     res.render('home')
 })
 
+app.get('/products', async (req, res) => {
+    const products = await Product.find({})
+    console.log(products)
+    res.render('products/index', {products})
+})
 //Listening on port 3000
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
 
