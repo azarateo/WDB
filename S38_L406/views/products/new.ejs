@@ -7,10 +7,18 @@
     <title>Document</title>
 </head>
 <body>
-    <form action="/create" method="post"></form>
-    <input type="text" name="name" placeholder="Name">
-    <input type="text" name="price" placeholder="Price">
-    <input type="text" name="description" placeholder="Description">
-    <button type="submit">Create</button>
+    <form action="/products" method="post">
+    <label for="name">Name</label>
+    <input type="text" name="name" id="name" placeholder="Product name">
+    <label for="price" placeholder="price">Price</label>
+    <input type="number" name="price" id="price">
+    <select name="description" id="description">
+        <option value="fruit">Fruit</option>
+        <option value="vegetable">Vegetable</option>
+        <option value="dairy">Dairy</option>
+    </select>
+    <button>Submit</button>
+    </form>
 </body>
 </html>
+

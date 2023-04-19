@@ -8,6 +8,7 @@ const app = express()
 const port = 3000
 app.set('view engine', 'ejs')
 app.set('views',path.join(__dirname,'views'))
+app.use(express.urlencoded({extended: true}))
 
 //Creating home endpoint
 app.get('/',(req, res) => {
@@ -17,6 +18,16 @@ app.get('/',(req, res) => {
 app.get('/products', async (req, res) => {
     const products = await Product.find({})
     res.render('products/index', {products})
+})
+
+app.post('/products', async (req, res) => {
+    try {
+        const newProduct = new Product(req.body)
+        await newProduct.save()
+        res.redirect(`/products/${newProduct._id}`)
+    } catch (error) {
+        console.log(error)
+    }
 })
 
 app.get('/products/new', (req, res) => {
@@ -34,20 +45,6 @@ app.get('/products/:id', async (req, res) => {
     }
     
 })
-
-
-app.post('/products/create', async (req, res) => {
-    try {
-        const newProduct = new Product(req.body)
-        await newProduct.save()
-        res.redirect(`/products/${newProduct._id}`)
-    } catch (error) {
-        console.log(error)
-    }
-})
-
-
-
 
 //Listening on port 3000
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
