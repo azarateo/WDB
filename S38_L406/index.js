@@ -20,7 +20,7 @@ app.get('/products', async (req, res) => {
 })
 
 app.get('/products/new', (req, res) => {
-    res.send('New Product')
+    res.render('products/new')
 })
 
 app.get('/products/:id', async (req, res) => {
