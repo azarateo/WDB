@@ -19,9 +19,13 @@ app.get('/products', async (req, res) => {
     res.render('products/index', {products})
 })
 
+app.get('/products/new', (req, res) => {
+    res.send('New Product')
+})
+
 app.get('/products/:id', async (req, res) => {
     try {
-        const {id} = req.params
+        const { id } = req.params
         const product = await Product.findById(id)
         console.log(product)
         res.render('products/show', {product})
@@ -30,6 +34,21 @@ app.get('/products/:id', async (req, res) => {
     }
     
 })
+
+
+app.post('/products/create', async (req, res) => {
+    try {
+        const newProduct = new Product(req.body)
+        await newProduct.save()
+        res.redirect(`/products/${newProduct._id}`)
+    } catch (error) {
+        console.log(error)
+    }
+})
+
+
+
+
 //Listening on port 3000
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
 
