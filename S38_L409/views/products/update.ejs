@@ -14,9 +14,9 @@
     <label for="price" placeholder="price">Price</label>
     <input type="number" name="price" id="price" value="<%= product.price %>">
     <select name="description" id="description">
-        <option value="fruit">Fruit</option>
-        <option value="vegetable">Vegetable</option>
-        <option value="dairy">Dairy</option>
+        <option value="fruit" <%= product.description === 'fruit' ? 'selected' : ''  %>>Fruit</option>
+        <option value="vegetable" <%= product.description === 'vegetable' ? 'selected' : ''  %>>Vegetable</option>
+        <option value="dairy" <%= product.description === 'dairy' ? 'selected' : ''  %>>Dairy</option>
     </select>
     <button>Submit</button>
     </form> 
