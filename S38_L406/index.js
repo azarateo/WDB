@@ -3,12 +3,15 @@ const mongoose = require('mongoose')
 const path = require('path')
 
 const Product = require('./models/product')
-
+const  methodOverride = require('method-override')
 const app = express()
 const port = 3000
+
 app.set('view engine', 'ejs')
 app.set('views',path.join(__dirname,'views'))
+
 app.use(express.urlencoded({extended: true}))
+app.use(methodOverride('_method'))
 
 //Creating home endpoint
 app.get('/',(req, res) => {
@@ -30,6 +33,12 @@ app.post('/products', async (req, res) => {
     }
 })
 
+app.put('/products/:id', async (req, res) => {
+    const { id } = req.params
+    await Product.findByIdAndUpdate(id, req.body)
+    res.redirect(`/products/${req.params.id}`)
+})
+
 app.get('/products/new', (req, res) => {
     res.render('products/new')
 })
@@ -43,8 +52,20 @@ app.get('/products/:id', async (req, res) => {
     } catch (error) {
         console.log(error)
     }
-    
 })
+
+app.get('/products/:id/edit', async (req, res) => {
+    try {
+        const { id } = req.params
+        const product = await Product.findById(id)
+        console.log(product)
+        res.render('products/update', {product})
+    } catch (error) {
+        console.log(error)
+    }
+})
+
+
 
 //Listening on port 3000
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
