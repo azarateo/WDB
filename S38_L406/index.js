@@ -23,22 +23,6 @@ app.get('/products', async (req, res) => {
     res.render('products/index', {products})
 })
 
-app.post('/products', async (req, res) => {
-    try {
-        const newProduct = new Product(req.body)
-        await newProduct.save()
-        res.redirect(`/products/${newProduct._id}`)
-    } catch (error) {
-        console.log(error)
-    }
-})
-
-app.put('/products/:id', async (req, res) => {
-    const { id } = req.params
-    const product = await Product.findByIdAndUpdate(id, req.body, {runValidators : true, new: true})
-    console.log("Updated product:",product)
-    res.redirect(`/products/${product._id}`)
-})
 
 app.get('/products/new', (req, res) => {
     res.render('products/new')
@@ -64,6 +48,23 @@ app.get('/products/:id/edit', async (req, res) => {
     } catch (error) {
         console.log(error)
     }
+})
+
+app.post('/products', async (req, res) => {
+    try {
+        const newProduct = new Product(req.body)
+        await newProduct.save()
+        res.redirect(`/products/${newProduct._id}`)
+    } catch (error) {
+        console.log(error)
+    }
+})
+
+app.put('/products/:id', async (req, res) => {
+    const { id } = req.params
+    const product = await Product.findByIdAndUpdate(id, req.body, {runValidators : true, new: true})
+    console.log("Updated product:",product)
+    res.redirect(`/products/${product._id}`)
 })
 
 
