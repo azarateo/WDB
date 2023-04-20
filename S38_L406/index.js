@@ -35,8 +35,9 @@ app.post('/products', async (req, res) => {
 
 app.put('/products/:id', async (req, res) => {
     const { id } = req.params
-    await Product.findByIdAndUpdate(id, req.body)
-    res.redirect(`/products/${req.params.id}`)
+    const product = await Product.findByIdAndUpdate(id, req.body, {runValidators : true, new: true})
+    console.log("Updated product:",product)
+    res.redirect(`/products/${product._id}`)
 })
 
 app.get('/products/new', (req, res) => {

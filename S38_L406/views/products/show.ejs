@@ -7,8 +7,16 @@
     <title><%= product.name %></title>
 </head>
 <body>
-    <p><b><%= product.name %></b> <%= product.price %> <%= product.description %><p>
-        <p><a href="/products/<%= product._id %>/edit">Edit product</a></p>
+    <h1><b><%= product.name %></b></h1>
+    <ul>
+        <li>
+            <b>Price:</b> <%= product.price %>
+        </li>
+        <li>
+            <b>Description:</b> <%= product.description %>
+        </li>
+    </ul>
+    <p><a href="/products/<%= product._id %>/edit">Edit product</a></p>
     <p><a href="/products">All products</a></p>
 </body>
 </html>
