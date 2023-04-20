@@ -7,11 +7,14 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Products</h1>
+    <h1><%= category %> Products</h1>
     <% for(let p of products) { %>
-        <p><b><%= p.name %></b> <%= p.price %> <%= p.description %> <em><a href="/products/<%= p._id %>"> View product</a></em><p>   
+        <p><b><%= p.name %></b> <%= p.price %> <%= p.category %> <em><a href="/products/<%= p._id %>"> View product</a></em><p>   
     <% } %>
     <hr>
     <p><a href="/products/new">Add new product</a></p>
+    <% if(category!=='All') { %>
+        <p><a href="/products/">All products</a></p>
+    <% } %>
 </body>
 </html>
