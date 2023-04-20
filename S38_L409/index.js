@@ -13,6 +13,8 @@ app.set('views',path.join(__dirname,'views'))
 app.use(express.urlencoded({extended: true}))
 app.use(methodOverride('_method'))
 
+categories = ['fruit','vegetable','dairy']
+
 //Creating home endpoint
 app.get('/',(req, res) => {
     res.render('home')
@@ -25,7 +27,7 @@ app.get('/products', async (req, res) => {
 
 
 app.get('/products/new', (req, res) => {
-    res.render('products/new')
+    res.render('products/new', categories)
 })
 
 app.get('/products/:id', async (req, res) => {
@@ -44,7 +46,7 @@ app.get('/products/:id/edit', async (req, res) => {
         const { id } = req.params
         const product = await Product.findById(id)
         console.log(product)
-        res.render('products/update', {product})
+        res.render('products/update', {product, categories})
     } catch (error) {
         console.log(error)
     }
