@@ -16,6 +16,12 @@
             <b>Description:</b> <%= product.description %>
         </li>
     </ul>
-    <p><a href="/products/<%= product._id %>/edit">Edit product</a> <a href="/products">All products</a></p>
+    <p>
+        <a href="/products/<%= product._id %>/edit">Edit product</a>
+        <a href="/products">All products</a>
+        <form action="/products/<%= product._id%>?_method=DELETE" method="POST"">
+            <button>Delete</button>
+        </form>
+    </p>
 </body>
 </html>
