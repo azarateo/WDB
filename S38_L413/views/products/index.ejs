@@ -9,7 +9,8 @@
 <body>
     <h1><%= category %> Products</h1>
     <% for(let p of products) { %>
-        <p><b><%= p.name %></b> <%= p.price %> <%= p.category %> <em><a href="/products/<%= p._id %>"> View product</a></em><p>   
+        <p><b><%= p.name %></b> <%= p.price %> <%= p.category %> 
+            <em><a href="/products/<%= p._id %>"> View product</a></em><p>   
     <% } %>
     <hr>
     <p><a href="/products/new">Add new product</a></p>
