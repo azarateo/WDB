@@ -6,6 +6,13 @@ app.get("/", (req, res) => {
   res.send("home");
 });
 
+app.get("/search", (req, res) => {
+  let { q, length } = req.query;
+  res.send(
+    `<h1> requested to search ${q}</h1><p>Limiting search to ${length} characters<p/>`
+  );
+});
+
 app.get("/section/:searchterm", (req, res) => {
   let searchterm = req.params.searchterm || "";
   res.send(searchterm);
